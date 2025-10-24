@@ -338,10 +338,10 @@
                 <span></span>
             </label>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#attivita">Attività</a></li>
-                <li><a href="#info">Info</a></li>
-                <li><a href="#contatti">Contatti</a></li>
+                <li><a href="#home" class="menu-link">Home</a></li>
+                <li><a href="#attivita" class="menu-link">Attività</a></li>
+                <li><a href="#info" class="menu-link">Info</a></li>
+                <li><a href="#contatti" class="menu-link">Contatti</a></li>
             </ul>
         </nav>
     </header>
@@ -415,5 +415,21 @@
     <footer>
         <p>&copy; 2025 Circolo Scacchi Barletta. Tutti i diritti riservati.</p>
     </footer>
+
+    <!-- Script per chiudere il menu mobile dopo il click -->
+    <script>
+        // Chiude automaticamente il menu mobile quando si clicca su un link
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuLinks = document.querySelectorAll('.menu-link');
+            const menuToggle = document.getElementById('menu-toggle');
+
+            menuLinks.forEach(function(link) {
+                link.addEventListener('click', function() {
+                    // Deseleziona il checkbox per chiudere il menu
+                    menuToggle.checked = false;
+                });
+            });
+        });
+    </script>
 </body>
 </html>
