@@ -53,6 +53,7 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            z-index: 1001;
         }
 
         .nav-links {
@@ -70,6 +71,27 @@
 
         .nav-links a:hover {
             color: var(--accent-color);
+        }
+
+        /* Menu Hamburger */
+        .menu-toggle {
+            display: none;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 3px;
         }
 
         /* Hero Section */
@@ -199,14 +221,69 @@
             }
         }
 
-        /* Responsive */
+        /* Responsive per Mobile */
         @media (max-width: 768px) {
+            nav {
+                padding: 0 1rem;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
             .nav-links {
-                gap: 1rem;
+                position: fixed;
+                left: -100%;
+                top: 60px;
+                flex-direction: column;
+                background: linear-gradient(135deg, var(--primary-color) 0%, #34495e 100%);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0,0,0,0.3);
+                padding: 2rem 0;
+                gap: 0;
+            }
+
+            .nav-links li {
+                padding: 1rem 0;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+
+            .nav-links li:last-child {
+                border-bottom: none;
+            }
+
+            .nav-links a {
+                font-size: 1.1rem;
+            }
+
+            .menu-toggle:checked ~ .nav-links {
+                left: 0;
+            }
+
+            .menu-toggle:checked ~ .hamburger span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .menu-toggle:checked ~ .hamburger span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .menu-toggle:checked ~ .hamburger span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+
+            .hero {
+                padding: 120px 1rem 80px;
             }
 
             .hero h1 {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
 
             .hero p {
@@ -214,7 +291,35 @@
             }
 
             .section-title {
-                font-size: 2rem;
+                font-size: 1.8rem;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .info-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .container {
+                padding: 3rem 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .logo {
+                font-size: 1rem;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -226,6 +331,12 @@
             <div class="logo">
                 ♔ Circolo Scacchi Barletta
             </div>
+            <input class="menu-toggle" type="checkbox" id="menu-toggle"/>
+            <label class="hamburger" for="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#attivita">Attività</a></li>
@@ -303,7 +414,6 @@
     <!-- Footer -->
     <footer>
         <p>&copy; 2025 Circolo Scacchi Barletta. Tutti i diritti riservati.</p>
-        <p style="margin-top: 1rem; font-size: 0.9rem;">Design moderno e responsive</p>
     </footer>
 </body>
 </html>
